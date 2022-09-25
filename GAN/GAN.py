@@ -44,7 +44,7 @@ class Generator(nn.Module):
 
 # Hyperparameters etc.
 device = "cuda" if torch.cuda.is_available() else "cpu"
-lr = 1e-4
+lr = 3e-4
 z_dim = 64  # 128, 256
 image_dim = 28 * 28 * 1  # 784
 batch_size = 32
@@ -55,7 +55,7 @@ gen = Generator(z_dim, image_dim).to(device)
 fixed_noise = torch.randn((batch_size, z_dim)).to(device)
 
 transforms = transforms.Compose(
-    [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]  # 传入两个只有一个元素的元组
+    [transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))]  # 传入两个只有一个元素的元组
 )
 dataset = datasets.MNIST(root="./dataset/", transform=transforms, download=True)
 loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
@@ -103,11 +103,11 @@ for epoch in range(num_epochs):
                 img_grid_real = torchvision.utils.make_grid(data, normalize=True)
 
                 writer_fake.add_image(
-                    "Mnist Fake Images2", img_grid_fake, global_step=step
+                    "Mnist Fake Images3", img_grid_fake, global_step=step
                 )
 
                 writer_real.add_image(
-                    "Mnist real Images2", img_grid_real, global_step=step
+                    "Mnist real Images3", img_grid_real, global_step=step
                 )
 
                 step += 1
