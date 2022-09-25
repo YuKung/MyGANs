@@ -44,7 +44,7 @@ class Generator(nn.Module):
 
 # Hyperparameters etc.
 device = "cuda" if torch.cuda.is_available() else "cpu"
-lr = 3e-4
+lr = 1e-4
 z_dim = 64  # 128, 256
 image_dim = 28 * 28 * 1  # 784
 batch_size = 32
@@ -103,11 +103,11 @@ for epoch in range(num_epochs):
                 img_grid_real = torchvision.utils.make_grid(data, normalize=True)
 
                 writer_fake.add_image(
-                    "Mnist Fake Images", img_grid_fake, global_step=step
+                    "Mnist Fake Images2", img_grid_fake, global_step=step
                 )
 
                 writer_real.add_image(
-                    "Mnist real Images", img_grid_real, global_step=step
+                    "Mnist real Images2", img_grid_real, global_step=step
                 )
 
                 step += 1
